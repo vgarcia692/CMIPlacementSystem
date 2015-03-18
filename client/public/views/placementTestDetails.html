@@ -1,0 +1,145 @@
+<div>
+
+    <h1>{{ exam.f_name }} {{ exam.m_initial }}, {{ exam.l_name }}</h1>
+    <p>{{ exam.test_date }}</p>
+    <h2><span class="label label-default">{{ exam.essay_num }}</span></h2>
+    <input ng-if="!essayNumPresent" ng-model="exam.essay_num" type="number"> <button ng-if="!essayNumPresent" class="btn btn-primary" ng-click="submitEssayNum()">Save</button>
+    <hr>
+    <div class="row">
+
+
+        <div class="col-md-5">
+
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Total Placement Scoring</h3>
+                </div>
+                <div class="panel-body">
+                    <h4>Math Score: <span class="label label-default">{{ exam.math_score }}</span> </h4>
+                    <h4>ESL Accuplacer Score: <span class="label label-default">{{ exam.accuplacer_score }}</span> = <span class="label label-info">{{ exam.accuplacer_level }}</span></h4>
+                    <h4>Writing Sample Score: <span class="label label-default">{{ exam.writing_sample_score }}</span> = <span class="label label-info">{{ exam.writing_sample_level }}</span></h4>
+                    <h3>Final Placement: <span class="label label-success">{{ exam.final_placement_level }}</span></h3>
+                </div>
+
+            </div>
+
+            <div class="panel panel-warning" ng-show="showFacultyInput">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Faculty Input Score:</h3>
+                </div>
+                <div class="panel-body">
+                    <form>
+                        <label class="radio">
+                            <input type="radio" name="facultyRadio" id="facScore0" value=0 ng-model="facRadioChoice"> 0 - GED
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="facultyRadio" id="facScore1" value=1 ng-model="facRadioChoice"> 1 - Level 1 English (ENG 66/68)
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="facultyRadio" id="facScore2" value=2 ng-model="facRadioChoice"> 2 - Level 2 English (ENG 86/88)
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="facultyRadio" id="facScore3" value=3 ng-model="facRadioChoice"> 3 - Level 3 English (ENG 96/98)
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="facultyRadio" id="facScore4" value=4 ng-model="facRadioChoice"> 4 - Credit (ENG 101,105)
+                        </label>
+                        <button class="btn btn-primary" ng-click="submitFacScore()">Submit</button>
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Writing Sample Score</h3>
+                </div>
+                <div class="panel-body">
+                    <h4>Please Submit the Writing Sample Score:</h4>
+                    <form>
+                        <label class="radio">
+                            <input type="radio" name="writingSampleRadio" id="wsScore0" value=0 ng-model="wsRadioChoice"> 0 - GED
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="writingSampleRadio" id="wsScore1" value=1 ng-model="wsRadioChoice"> 1 - Level 1 English (ENG 66/68)
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="writingSampleRadio" id="wsScore2" value=2 ng-model="wsRadioChoice"> 2 - Level 2 English (ENG 86/88)
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="writingSampleRadio" id="wsScore3" value=3 ng-model="wsRadioChoice"> 3 - Level 3 English (ENG 96/98)
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="writingSampleRadio" id="wsScore4" value=4 ng-model="wsRadioChoice"> 4 - Credit (ENG 101,105)
+                        </label>
+                        <button class="btn btn-primary" ng-click="submitWsScore()">Submit</button>
+                    </form>
+
+                </div>
+
+            </div>
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Personal Information</h3>
+                </div>
+                <div class="panel-body">
+                    <p><strong>Social Security Number: </strong>{{ exam.ssn }}</p>
+                    <p><strong>Date of Birth: </strong>{{ exam.dob | date }}</p>
+                    <p><strong>High School: </strong>{{ exam.hs }}</p>
+                    <p><strong>Gender: </strong>{{ exam.gender }}</p>
+                    <p ng-if="!exam.taken"><strong>Has taken Placement Test before?: </strong>No</p>
+                    <p ng-if="exam.taken"><strong>Has taken Placement Test before?: </strong>Yes</p>
+                    <p><strong>If taken Placement Test before, when?: </strong>{{ exam.taken_year }}</p>
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-1"></div>
+
+        <div class="panel panel-primary col-md-6">
+            <div class="panel-heading">
+                <h3 class="panel-title">CMI Placement Book Exam Results</h3>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-info"><p><strong>Overall Grade: </strong>{{ exam.overall_grade }}</p></li>
+                    <li class="list-group-item list-group-item-info"><p><strong>Overall Percent Score: </strong>{{ exam.overall_percent_score }}%</p></li>
+                    <li class="list-group-item list-group-item-info"><p><strong>Overall Total Score: </strong>{{ exam.overall_total_score }}</p></li>
+                </ul>
+                <ul class="list-group">
+                    <li class="list-group-item"><p><strong>Language Grade: </strong>{{ exam.lu_grade }}</p></li>
+                    <li class="list-group-item"><p><strong>Language Percent Score: </strong>{{ exam.lu_percent_score }}%</p></li>
+                    <li class="list-group-item"><p><strong>Language Total Score: </strong>{{ exam.lu_total_score }}</p></li>
+                </ul>
+                <ul class="list-group">
+                    <li class="list-group-item"><p><strong>Sentence Skill Grade: </strong>{{ exam.ss_grade }}</p></li>
+                    <li class="list-group-item"><p><strong>Sentence Skill Percent Score: </strong>{{ exam.ss_percent_score }}%</p></li>
+                    <li class="list-group-item"><p><strong>Sentence Skill Total Score: </strong>{{ exam.ss_total_score }}</p></li>
+                </ul>
+                <ul class="list-group">
+                    <li class="list-group-item"><p><strong>Reading Skill Grade: </strong>{{ exam.rs_grade }}</p></li>
+                    <li class="list-group-item"><p><strong>Reading Skill Percent Score: </strong>{{ exam.rs_percent_score }}%</p></li>
+                    <li class="list-group-item"><p><strong>Reading Skill Total Score: </strong>{{ exam.rs_total_score }}</p></li>
+                </ul>
+                <ul class="list-group">
+                    <li class="list-group-item"><p><strong>Elementary Algebra Grade: </strong>{{ exam.ea_grade }}</p></li>
+                    <li class="list-group-item"><p><strong>Elementary Algebra Percent Score: </strong>{{ exam.ea_percent_score }}%</p></li>
+                    <li class="list-group-item"><p><strong>Elementary Algebra Total Score: </strong>{{ exam.ea_total_score }}</p></li>
+                </ul>
+                <ul class="list-group">
+                    <li class="list-group-item"><p><strong>Arithmetic Grade: </strong>{{ exam.a_grade }}</p></li>
+                    <li class="list-group-item"><p><strong>Arithmetic Percent Score: </strong>{{ exam.a_percent_score }}%</p></li>
+                    <li class="list-group-item"><p><strong>Arithmetic Total Score: </strong>{{ exam.a_total_score }}</p></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>

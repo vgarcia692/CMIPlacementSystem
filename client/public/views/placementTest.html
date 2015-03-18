@@ -1,0 +1,28 @@
+
+<div>
+
+    <h2><span class="label label-default">{{ total }} Total Exams</span></h2>
+
+
+    <table ng-table="tableParams" show-filter="true" class="table table-hover">
+        <tr ng-repeat="exam in $data">
+            <td data-title="'Essay Number'" sortable="'essay_num'">{{ exam.essay_num }}</td>
+            <td data-title="'Test Date'" sortable="'test_date'">{{ exam.test_date | date }}</td>
+            <td data-title="'Name'" filter="{ 'l_name': 'text' }" ><a href="#/placementTests/{{exam.id}}">{{ exam.f_name }} {{ exam.m_initial }}, {{ exam.l_name }}</a></td>
+            <td data-title="'Final Placement'" filter="{ 'final_placement_level': 'text' }"><p>{{ exam.final_placement_level }}</p></td>
+            <td data-title="'Taken?'" filter="{ 'taken': 'text' }">
+
+                <p></p><span ng-if="exam.taken" class="label label-warning">Yes</span></p>
+                <p></p><span ng-if="!exam.taken" class="label label-success">No</span></p>
+
+                <hr>
+
+                {{ exam.taken_year }}
+
+            </td>
+            <td data-title="'High School'" filter="{ 'highSchool': 'text' }">{{ exam.hs }}</td>
+        </tr>
+    </table>
+</div>
+
+

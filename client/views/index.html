@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html ng-app="cmiApp">
+<head>
+    <title>CMI Admission</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <!--<link href="../stylesheets/bootstrap.min.css" rel="stylesheet">-->
+    <!--<link href="../stylesheets/bootstrap-theme.min.css" rel="stylesheet">-->
+    <link href="../stylesheets/style.css" rel="stylesheet">
+    <link href="../stylesheets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../stylesheets/ng-table.css" rel="stylesheet">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular-resource.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular-route.js"></script>
+    <script src="../javascripts/ui-bootstrap-tpls-0.12.1.min.js"></script>
+    <script src="../javascripts/ng-table.js"></script>
+    <script src="../javascripts/app.js"></script>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand">CMI Placement Test System</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="#placementTests"><i class="fa fa-lightbulb-o fa-fw"></i>Placement Exams</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+
+    <div class="panel">
+
+        <div class="middle-content">
+
+            <ng-view></ng-view>
+
+        </div>
+
+    </div>
+
+
+</body>
+</html>
