@@ -1,83 +1,27 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install', '-g', 'nodeamon' ]
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'start' ]
 2 info using npm@1.4.28
 3 info using node@v0.10.37
 4 verbose node symlink /usr/bin/node
-5 verbose cache add [ 'nodeamon', null ]
-6 verbose cache add name=undefined spec="nodeamon" args=["nodeamon",null]
-7 verbose parsed url { protocol: null,
-7 verbose parsed url   slashes: null,
-7 verbose parsed url   auth: null,
-7 verbose parsed url   host: null,
-7 verbose parsed url   port: null,
-7 verbose parsed url   hostname: null,
-7 verbose parsed url   hash: null,
-7 verbose parsed url   search: null,
-7 verbose parsed url   query: null,
-7 verbose parsed url   pathname: 'nodeamon',
-7 verbose parsed url   path: 'nodeamon',
-7 verbose parsed url   href: 'nodeamon' }
-8 silly lockFile ef28aa95-nodeamon nodeamon
-9 verbose lock nodeamon /home/vagrant/.npm/ef28aa95-nodeamon.lock
-10 silly lockFile ef28aa95-nodeamon nodeamon
-11 silly lockFile ef28aa95-nodeamon nodeamon
-12 verbose addNamed [ 'nodeamon', '' ]
-13 verbose addNamed [ null, '*' ]
-14 silly lockFile 06d30f9d-nodeamon nodeamon@
-15 verbose lock nodeamon@ /home/vagrant/.npm/06d30f9d-nodeamon.lock
-16 silly addNameRange { name: 'nodeamon', range: '*', hasData: false }
-17 verbose request where is /nodeamon
-18 verbose request registry https://registry.npmjs.org/
-19 verbose request id a11eb75802c54c4c
-20 verbose url raw /nodeamon
-21 verbose url resolving [ 'https://registry.npmjs.org/', './nodeamon' ]
-22 verbose url resolved https://registry.npmjs.org/nodeamon
-23 verbose request where is https://registry.npmjs.org/nodeamon
-24 info trying registry request attempt 1 at 00:55:36
-25 http GET https://registry.npmjs.org/nodeamon
-26 http 404 https://registry.npmjs.org/nodeamon
-27 verbose headers { date: 'Mon, 23 Mar 2015 00:55:41 GMT',
-27 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
-27 verbose headers   'content-type': 'application/json',
-27 verbose headers   'cache-control': 'max-age=0',
-27 verbose headers   'content-length': '51',
-27 verbose headers   'accept-ranges': 'bytes',
-27 verbose headers   via: '1.1 varnish',
-27 verbose headers   age: '0',
-27 verbose headers   'x-served-by': 'cache-nrt6122-NRT',
-27 verbose headers   'x-cache': 'MISS',
-27 verbose headers   'x-cache-hits': '0',
-27 verbose headers   'x-timer': 'S1427072140.713821,VS0,VE707',
-27 verbose headers   'keep-alive': 'timeout=10, max=50',
-27 verbose headers   connection: 'Keep-Alive' }
-28 silly registry.get cb [ 404,
-28 silly registry.get   { date: 'Mon, 23 Mar 2015 00:55:41 GMT',
-28 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
-28 silly registry.get     'content-type': 'application/json',
-28 silly registry.get     'cache-control': 'max-age=0',
-28 silly registry.get     'content-length': '51',
-28 silly registry.get     'accept-ranges': 'bytes',
-28 silly registry.get     via: '1.1 varnish',
-28 silly registry.get     age: '0',
-28 silly registry.get     'x-served-by': 'cache-nrt6122-NRT',
-28 silly registry.get     'x-cache': 'MISS',
-28 silly registry.get     'x-cache-hits': '0',
-28 silly registry.get     'x-timer': 'S1427072140.713821,VS0,VE707',
-28 silly registry.get     'keep-alive': 'timeout=10, max=50',
-28 silly registry.get     connection: 'Keep-Alive' } ]
-29 silly lockFile 06d30f9d-nodeamon nodeamon@
-30 silly lockFile 06d30f9d-nodeamon nodeamon@
-31 error 404 404 Not Found: nodeamon
-31 error 404
-31 error 404 'nodeamon' is not in the npm registry.
-31 error 404 You should bug the author to publish it
-31 error 404
-31 error 404 Note that you can also install from a
-31 error 404 tarball, folder, or http url, or git url.
-32 error System Linux 3.13.0-46-generic
-33 error command "/usr/bin/node" "/usr/bin/npm" "install" "-g" "nodeamon"
-34 error cwd /www/CMIPlacementSystem
-35 error node -v v0.10.37
-36 error npm -v 1.4.28
-37 error code E404
-38 verbose exit [ 1, true ]
+5 verbose run-script [ 'prestart', 'start', 'poststart' ]
+6 info prestart admission@0.0.0
+7 info start admission@0.0.0
+8 verbose unsafe-perm in lifecycle true
+9 info admission@0.0.0 Failed to exec start script
+10 error admission@0.0.0 start: `node ./bin/www`
+10 error Exit status 8
+11 error Failed at the admission@0.0.0 start script.
+11 error This is most likely a problem with the admission package,
+11 error not with npm itself.
+11 error Tell the author that this fails on your system:
+11 error     node ./bin/www
+11 error You can get their info via:
+11 error     npm owner ls admission
+11 error There is likely additional logging output above.
+12 error System Linux 3.2.0-23-generic
+13 error command "/usr/bin/node" "/usr/bin/npm" "start"
+14 error cwd /home/vgarcia/CMIPlacementSystem
+15 error node -v v0.10.37
+16 error npm -v 1.4.28
+17 error code ELIFECYCLE
+18 verbose exit [ 1, true ]
