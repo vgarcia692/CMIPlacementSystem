@@ -80,7 +80,8 @@ router.get('/placementTests', function(req, res) {
     pg.connect(connectionString, function(err, client, dont) {
 
         // SQL Query > Select Data
-        var query = client.query("SELECT pt.id, pt.date_created, pt.test_date, pt.l_name, pt.m_initial, pt.f_name, pt.accuplacer_level, pt.writing_sample_level, pt.final_placement_level, pt.taken_year, pt.hs, pt.taken, pt.essay_num " +
+        var query = client.query("SELECT pt.id, pt.date_created, pt.test_date, pt.l_name, pt.m_initial, pt.f_name, pt.accuplacer_level, pt.writing_sample_level, pt.final_placement_level, pt.taken_year, pt.hs, pt.taken, pt.essay_num," +
+            "pt.exam_year, pt.sis_stud_no, pt.sis_full_name, pt.sis_r_date_as_new " +
         "FROM placement_test pt " +
         "ORDER BY pt.essay_num ASC;");
 
@@ -117,7 +118,8 @@ router.get('/placementTests/:id', function(req, res) {
             "pt.overall_grade, pt.overall_percent_score, pt.overall_total_score, pt.lu_grade, pt.lu_percent_score, pt.lu_total_score, " +
             "pt.ss_grade, pt.ss_percent_score, pt.ss_total_score, pt.rs_grade, pt.rs_percent_score, pt.rs_total_score, " +
             "pt.ea_grade, pt.ea_percent_score, pt.ea_total_score, pt.a_grade, pt.a_percent_score, pt.a_total_score, pt.essay_num, pt.accuplacer_total, pt.accuplacer_score, pt.accuplacer_level, " +
-            "pt.writing_sample_level, pt.writing_sample_score, pt.math_score, pt.faculty_score, pt.final_placement_level " +
+            "pt.writing_sample_level, pt.writing_sample_score, pt.math_score, pt.faculty_score, pt.final_placement_level, " +
+            "pt.exam_year, pt.sis_stud_no, pt.sis_full_name, pt.sis_r_date_as_new " +
             "FROM placement_test pt " +
             "WHERE pt.id = ($1);", [id]);
 
@@ -156,7 +158,10 @@ router.put('/placementTests/:test_id', function(req, res) {
         wsScore:            req.body.writing_sample_score,
         mScore:             req.body.math_score,
         facScore:           req.body.faculty_score,
-        finPlacementLevel:  req.body.final_placement_level
+        finPlacementLevel:  req.body.final_placement_level,
+        examYear:           req.body.exam_year,
+        sisStudNo:          req.body.sis_stud_no,
+        sisFullName:        req.body.sis_full_name
     };
 
     // Get a Postgres client from the connection pool
@@ -165,16 +170,18 @@ router.put('/placementTests/:test_id', function(req, res) {
         // SQL Query > Update Data
         client.query("UPDATE placement_test " +
             "SET accuplacer_total=($1), accuplacer_score=($2), accuplacer_level=($3), " +
-            "writing_sample_level=($5), writing_sample_score=($6), faculty_score=($7), final_placement_level=($8), essay_num=($9) " +
+            "writing_sample_level=($5), writing_sample_score=($6), faculty_score=($7), final_placement_level=($8), essay_num=($9), " +
+            "exam_year=($10), sis_stud_no=($11), sis_full_name=($12) " +
             "WHERE id=($4);",
-            [data.accTotal, data.accScore, data.accLevel, id, data.wsLevel, data.wsScore, data.facScore, data.finPlacementLevel, data.essayNum]);
+            [data.accTotal, data.accScore, data.accLevel, id, data.wsLevel, data.wsScore, data.facScore, data.finPlacementLevel, data.essayNum, data.examYear, data.sisStudNo, data.sisFullName]);
 
         // SQL Query > Select Data
         var query = client.query("SELECT pt.id, pt.date_created, pt.test_date, pt.l_name, pt.m_initial, pt.f_name, pt.ssn,pt.dob, pt.gender, pt.taken_year, pt.hs, pt.taken, " +
             "pt.overall_grade, pt.overall_percent_score, pt.overall_total_score, pt.lu_grade, pt.lu_percent_score, pt.lu_total_score, " +
             "pt.ss_grade, pt.ss_percent_score, pt.ss_total_score, pt.rs_grade, pt.rs_percent_score, pt.rs_total_score, " +
             "pt.ea_grade, pt.ea_percent_score, pt.ea_total_score, pt.a_grade, pt.a_percent_score, pt.a_total_score, pt.essay_num, pt.accuplacer_total, pt.accuplacer_score, pt.accuplacer_level, " +
-            "pt.writing_sample_level, pt.writing_sample_score, pt.math_score, pt.faculty_score, pt.final_placement_level " +
+            "pt.writing_sample_level, pt.writing_sample_score, pt.math_score, pt.faculty_score, pt.final_placement_level, " +
+            "pt.exam_year, pt.sis_stud_no, pt.sis_full_name, pt.sis_r_date_as_new " +
             "FROM placement_test pt " +
             "WHERE pt.id = ($1);", [id]);
 

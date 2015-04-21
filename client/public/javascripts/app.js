@@ -51,7 +51,7 @@ angular.module('cmiApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ngTable'])
 
     }])
 
-    .controller('examDetailCtrl', ['$scope', '$routeParams', 'PlacementExams', function ($scope, $routeParams, PlacementExams) {
+    .controller('examDetailCtrl', ['$scope', '$filter', '$routeParams', 'PlacementExams', function ($scope, $filter, $routeParams, PlacementExams) {
 
         $scope.wsScore = 0;
         $scope.wsRadioChoice = 0;
@@ -67,6 +67,21 @@ angular.module('cmiApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ngTable'])
        $scope.exam = PlacementExams.get({ id: $routeParams.id }, function(examDB){
 
 
+
+           $scope.submitExamYear = function() {
+               examDB.$update();
+               alert('Exam Year Saved');
+           };
+
+           $scope.savePersonalInfo = function() {
+               console.log($scope.exam.sis_r_date_as_new);
+               examDB.$update();
+
+               alert('Personal Information Saved.');
+               console.log($scope.exam.sis_r_date_as_new);
+           };
+
+           // Add exam number is not present already
            if (examDB.essay_num == null) {
                $scope.essayNumPresent = false;
 
@@ -156,7 +171,7 @@ angular.module('cmiApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ngTable'])
                } else if ($scope.exam.writing_sample_score == 3) {
                    $scope.exam.writing_sample_level = 'Level 3 English (ENG 96/98)';
                } else {
-                   $scope.exam.writing_sample_level = ('Credit (ENG 101/105');
+                   $scope.exam.writing_sample_level = ('Credit (ENG 101/105)');
                }
 
 

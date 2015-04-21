@@ -1,9 +1,10 @@
 <div>
 
     <h1>{{ exam.f_name }} {{ exam.m_initial }}, {{ exam.l_name }}</h1>
-    <p>{{ exam.test_date }}</p>
+    <p>Exam Date: {{ exam.test_date | date }}</p>
+    Exam Year(Range): <input ng-model="exam.exam_year" placeholder="{{exam.exam_year}}"> <button class="btn btn-primary" ng-click="submitExamYear()">Save</button>
     <h2><span class="label label-default">{{ exam.essay_num }}</span></h2>
-    <input ng-if="!essayNumPresent" ng-model="exam.essay_num" type="number"> <button ng-if="!essayNumPresent" class="btn btn-primary" ng-click="submitEssayNum()">Save</button>
+    Essay Number: <input ng-if="!essayNumPresent" ng-model="exam.essay_num" type="number"> <button ng-if="!essayNumPresent" class="btn btn-primary" ng-click="submitEssayNum()">Save</button>
     <hr>
     <div class="row">
 
@@ -84,13 +85,19 @@
                     <h3 class="panel-title">Personal Information</h3>
                 </div>
                 <div class="panel-body">
-                    <p><strong>Social Security Number: </strong>{{ exam.ssn }}</p>
-                    <p><strong>Date of Birth: </strong>{{ exam.dob | date }}</p>
-                    <p><strong>High School: </strong>{{ exam.hs }}</p>
-                    <p><strong>Gender: </strong>{{ exam.gender }}</p>
-                    <p ng-if="!exam.taken"><strong>Has taken Placement Test before?: </strong>No</p>
-                    <p ng-if="exam.taken"><strong>Has taken Placement Test before?: </strong>Yes</p>
-                    <p><strong>If taken Placement Test before, when?: </strong>{{ exam.taken_year }}</p>
+                    <form>
+                        <strong>SIS Student Number: </strong><input type="text" ng-model="exam.sis_stud_no" placeholder="{{ exam.sis_stud_no }}"/><br>
+                        <strong>SIS Full Name: </strong><input type="text" ng-model="exam.sis_full_name" placeholder="{{ exam.sis_full_name }}"/><br>
+                        <strong>SIS Registration As New: </strong> {{ exam.sis_r_date_as_new | date }}<br>
+                        <strong>Social Security Number: </strong><input type="text" ng-model="exam.ssn" placeholder="{{ exam.ssn }}"/><br>
+                        <strong>Date of Birth: </strong>{{ exam.dob | date }}<br>
+                        <strong>High School: </strong><input type="text" ng-model="exam.hs" placeholder="{{ exam.hs }}"/><br>
+                        <strong>Gender: </strong><input type="text" ng-model="exam.gender" placeholder="{{ exam.gender }}"/><br>
+                        <strong>Has taken Placement Test before?: </strong><input type="checkbox" ng-model="exam.taken" checked="{{exam.taken}}"/><br>
+                        <strong>If taken Placement Test before, when?: </strong><input type="text" ng-model="exam.taken_year" placeholder="{{ exam.taken_year }}"/><br>
+                        <button class="btn btn-primary" ng-click="savePersonalInfo()">Save</button>
+                    </form>
+
                 </div>
 
 
