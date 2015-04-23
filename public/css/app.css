@@ -1,0 +1,66 @@
+/* app css stylesheet */
+
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li:before {
+  content: "|";
+  padding-right: 0.3em;
+}
+
+.menu > li:nth-child(1):before {
+  content: "";
+  padding: 0;
+}
+
+body {
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+    color: #00B7FF;
+}
+
+.middle-content {
+    padding: 40px 15px;
+}
+.row {
+    padding: 20px;
+}
+
+h2 {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+form {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+table {
+    padding: 20px 20px;
+}
+
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+.ng-table {
+    border: 1px solid #000;
+}

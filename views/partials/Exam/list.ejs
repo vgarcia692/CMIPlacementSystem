@@ -1,0 +1,45 @@
+<div>
+
+    <h2><span class="label label-default">{{ exams.length }} Total Exams</span></h2><br>
+    <label for="search">Search: </label> <input id="search" placeholder="Filter Exams" ng-model="q">
+    <br>
+    <div class="panel">
+    <table class="table table-hover">
+        <thead>
+            <th>Exam Number</th>
+            <th>Test Date</th>
+            <th>Name</th>
+            <th>Placement</th>
+            <th>Taken</th>
+            <th>High School</th>
+        </thead>
+        <tbody>
+        <tr dir-paginate="exam in exams | filter:q | itemsPerPage: pageSize" current-page="currentPage">
+            <td>{{ exam.essay_num }}</td>
+            <td>{{ exam.test_date | date }}</td>
+            <td><a href="/view2/{{exam.id}}">{{ exam.f_name }} {{ exam.m_initial }}, {{ exam.l_name }}</a></td>
+            <td><p>{{ exam.final_placement_level }}</p></td>
+            <td>
+
+                <p></p><span ng-show="exam.taken" class="label label-warning">Yes</span></p>
+                <p></p><span ng-show="!exam.taken" class="label label-success">No</span></p>
+
+                <hr>
+
+                {{ exam.taken_year }}
+
+            </td>
+            <td>{{ exam.hs }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+
+    <div>
+        <div class="text-center">
+            <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="/css/dirPagination.tpl.html"></dir-pagination-controls>
+        </div>
+    </div>
+
+    </div>
+</div>
