@@ -5,7 +5,7 @@ var router = express.Router();
 var Exam = models.Exam;
 
 router.get('/', function(req, res) {
-    Exam.findAll().then(function(exams) {
+    Exam.findAll({ attributes: ['id', 'essay_num', 'test_date', 'f_name', 'l_name', 'm_initial', 'final_placement_level', 'taken', 'taken_year', 'hs']}).then(function(exams) {
         res.json(exams);
     })
 })

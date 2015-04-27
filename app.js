@@ -51,7 +51,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-var env = process.env.NODE_ENV || 'development';
+var env = process.env.NODE_ENV || 'test';
 
 // development only
 if (env === 'development') {
