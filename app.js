@@ -48,6 +48,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// UPLOAD FUNCTION FOR CSV FILES TO MYSQL
 app.use(multer({
     dest: __dirname + '/uploads',
     onFileUploadStart: function(file){
@@ -100,13 +102,6 @@ app.get('/',  routes.index);
 app.get('/partials/:name', routes.partials);
 app.get('/partials/Exam/:name', routes.examPartials);
 app.get('/partials/Upload/:name', routes.uploadPartials);
-
-//app.post('/', [ multer(), function(req, res){
-//    console.log(req.body);
-//    console.log(req.files);
-//    console.log(__dirname);
-//    res.status(204).end();
-//}]);
 
 // JSON API
 app.use('/api/exams', exams);
