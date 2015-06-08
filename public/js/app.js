@@ -24,6 +24,9 @@ angular.module('myApp', [
           templateUrl: 'partials/Exam/detail',
           controller: 'examDetailCtrl'
         }).
+        when('/view3', {
+          templateUrl: 'partials/Upload/index'
+        }).
         otherwise({
           redirectTo: '/view1'
         });

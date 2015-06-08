@@ -31,3 +31,8 @@ exports.examPartials = function (req, res) {
     res.render('partials/Exam/' + name);
 };
 
+exports.uploadPartials = function (req, res) {
+    var name = req.params.name;
+    res.render('partials/Upload/' + name);
+};
+

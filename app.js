@@ -12,12 +12,15 @@ var express = require('express'),
   flash = require('connect-flash'),
   cookieParser = require('cookie-parser'),
   session = require('express-session'),
-  fs = require('fs');
+  fs = require('fs'),
+  multer = require('multer'),
+  Converter = require('csvtojson').core.Converter;
 //  ejs = require('hbs');
 
   // Require the routes
   routes = require('./routes'),
   exams = require('./routes/exams'),
+  uploads = require('./routes/uploads'),
 
   http = require('http'),
   path = require('path'),
@@ -45,6 +48,28 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(multer({
+    dest: __dirname + '/uploads',
+    onFileUploadStart: function(file){
+        console.log('upload of ' + file.fieldname + ' is starting ...');
+    },
+    onFileUploadComplete: function (file) {
+        var csvFileName = file.path;
+        var fileStream = fs.createReadStream(csvFileName);
+
+        var param = {};
+        var csvConverter = new Converter(param);
+
+        csvConverter.on("end_parsed", function(jsonObj) {
+            models.Exam.bulkCreate(jsonObj)
+                .then(function() {
+                console.log("Insert Successful.");
+                })
+        });
+
+        fileStream.pipe(csvConverter);
+    }
+}))
 
 app.use(session( { secret: 'grantsystemsecrect', saveUninitialized: true, resave: true }));
 app.use(passport.initialize());
@@ -74,10 +99,18 @@ require('./routes/passport')(app, passport); // load our routes and pass in our 
 app.get('/',  routes.index);
 app.get('/partials/:name', routes.partials);
 app.get('/partials/Exam/:name', routes.examPartials);
+app.get('/partials/Upload/:name', routes.uploadPartials);
 
+//app.post('/', [ multer(), function(req, res){
+//    console.log(req.body);
+//    console.log(req.files);
+//    console.log(__dirname);
+//    res.status(204).end();
+//}]);
 
 // JSON API
 app.use('/api/exams', exams);
+app.use('/api/upload', uploads);
 //app.use('/ideaReport', ideaReport);
 
 // redirect all others to the index (HTML5 history)
