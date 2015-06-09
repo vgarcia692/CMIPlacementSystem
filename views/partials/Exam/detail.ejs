@@ -1,6 +1,6 @@
 <div>
 
-    <h1>{{ exam.f_name }} {{ exam.m_initial }}, {{ exam.l_name }}</h1>
+    <h1>{{ exam.l_name }} {{ exam.m_initial }}, {{ exam.f_name }}</h1>
     <p>{{ exam.test_date | date}}</p>
     <h2><span class="label label-default">{{ exam.essay_num }}</span></h2>
     Essay Number: <input ng-if="!essayNumPresent" ng-model="exam.essay_num" type="number"> <button ng-if="!essayNumPresent" class="btn btn-primary" ng-click="submitEssayNum()">Save</button>
