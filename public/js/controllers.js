@@ -68,6 +68,15 @@ angular.module('myApp.controllers', ['myApp.services', 'angularUtils.directives.
 
             // Add up the math Score
             $scope.exam.math_score = examDB.ea_total_score + examDB.a_total_score;
+            if ($scope.exam.math_score < 30) {
+                $scope.math_level = 'Level 1';
+            } else if ($scope.exam.math_score < 38) {
+                $scope.math_level = 'Level 2';
+            } else if ($scope.exam.math_score < 47) {
+                $scope.math_level = 'Level 4';
+            } else {
+                $scope.math_level = 'Credit';
+            }
 
             // If there has already been a scoring for writing sample then make the radio button that score
             if (examDB.writing_sample_score != null) {
