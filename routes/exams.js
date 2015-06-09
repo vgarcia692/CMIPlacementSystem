@@ -35,7 +35,10 @@ router.put('/:id', function(req, res) {
             exam_year:              req.body.exam_year,
             sis_stud_no:            req.body.sis_stud_no,
             sis_full_name:          req.body.sis_full_name,
-            sis_r_date_as_new:      req.body.sis_r_date_as_new
+            sis_r_date_as_new:      req.body.sis_r_date_as_new,
+            math_score:             req.body.math_score,
+            math_level:             req.body.math_level
+
         },
         { where: {id: req.params.id}})
         .then(function() {

@@ -19,7 +19,7 @@
                     <h4>ESL Accuplacer Score: <span class="label label-default">{{ exam.accuplacer_score }}</span> = <span class="label label-info">{{ exam.accuplacer_level }}</span></h4>
                     <h4>Writing Sample Score: <span class="label label-default">{{ exam.writing_sample_score }}</span> = <span class="label label-info">{{ exam.writing_sample_level }}</span></h4>
                     <h3>English Level: <span class="label label-success">{{ exam.final_placement_level }}</span></h3>
-                    <h3>Math Level: <span class="label label-success">{{ math_level }}</span></h3>
+                    <h3>Math Level: <span class="label label-success">{{ exam.math_level }}</span></h3>
                 </div>
 
             </div>
@@ -115,9 +115,13 @@
             </div>
             <div class="panel-body">
                 <ul class="list-group">
-                    <li class="list-group-item list-group-item-info"><p><strong>Overall Grade: </strong>{{ exam.overall_grade }}</p></li>
-                    <li class="list-group-item list-group-item-info"><p><strong>Overall Percent Score: </strong>{{ exam.overall_percent_score }}%</p></li>
-                    <li class="list-group-item list-group-item-info"><p><strong>Overall Total Score: </strong>{{ exam.overall_total_score }}</p></li>
+                    <li class="list-group-item list-group-item-success"><p><strong>Overall Grade: </strong>{{ exam.overall_grade }}</p></li>
+                    <li class="list-group-item list-group-item-success"><p><strong>Overall Percent Score: </strong>{{ exam.overall_percent_score }}%</p></li>
+                    <li class="list-group-item list-group-item-success"><p><strong>Overall Total Score: </strong>{{ exam.overall_total_score }}</p></li>
+                </ul>
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-info"><p><strong>English Level: </strong>{{ exam.accuplacer_level }}</p></li>
+                    <li class="list-group-item list-group-item-info"><p><strong>English Total Score: </strong>{{ exam.lu_total_score + exam.ss_total_score + exam.rs_total_score }}</p></li>
                 </ul>
                 <ul class="list-group">
                     <li class="list-group-item"><p><strong>Language Grade: </strong>{{ exam.lu_grade }}</p></li>

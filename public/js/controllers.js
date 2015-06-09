@@ -68,14 +68,19 @@ angular.module('myApp.controllers', ['myApp.services', 'angularUtils.directives.
 
             // Add up the math Score
             $scope.exam.math_score = examDB.ea_total_score + examDB.a_total_score;
+//            examDB.math_score = $scope.exam.math_score;
             if ($scope.exam.math_score < 30) {
-                $scope.math_level = 'Level 1';
+                $scope.exam.math_level = 'Level 1';
+//                examDB.math_level = 'Level 1';
             } else if ($scope.exam.math_score < 38) {
-                $scope.math_level = 'Level 2';
+                $scope.exam.math_level = 'Level 2';
+//                examDB.math_level = 'Level 2';
             } else if ($scope.exam.math_score < 47) {
-                $scope.math_level = 'Level 4';
+                $scope.exam.math_level = 'Level 4';
+//                examDB.math_level = 'Level 1';
             } else {
-                $scope.math_level = 'Credit';
+                $scope.exam.math_level = 'Credit';
+//                examDB.math_level = 'Level 1';
             }
 
             // If there has already been a scoring for writing sample then make the radio button that score
@@ -112,6 +117,8 @@ angular.module('myApp.controllers', ['myApp.services', 'angularUtils.directives.
                 examDB.accuplacer_total = $scope.exam.accuplacer_total;
                 examDB.accuplacer_level = $scope.exam.accuplacer_level;
                 examDB.accuplacer_score = $scope.exam.accuplacer_score;
+                examDB.math_score = $scope.exam.math_score;
+                examDB.math_level = $scope.exam.math_level;
 
                 // Update the placement exam
                 examDB.$update();
