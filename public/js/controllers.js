@@ -13,7 +13,6 @@ angular.module('myApp.controllers', ['myApp.services', 'angularUtils.directives.
         Exams.query(function(exams) {
             $scope.exams = exams;
 
-
         })
 
 
@@ -23,7 +22,7 @@ angular.module('myApp.controllers', ['myApp.services', 'angularUtils.directives.
     }])
 
 
-//=============EXAM DETAIL=================
+    //=============EXAM DETAIL=================
 
     .controller('examDetailCtrl', ['$scope', '$routeParams', 'Exams', function ($scope, $routeParams, Exams) {
 
@@ -97,7 +96,7 @@ angular.module('myApp.controllers', ['myApp.services', 'angularUtils.directives.
 
                 // Evaluate the level of the student from Accuplacer score
                 if ($scope.exam.accuplacer_total < 42) {
-                    $scope.exam.accuplacer_level = 'GED';
+                    $scope.exam.accuplacer_level = 'Cannot Be Placed';
                     $scope.exam.accuplacer_score = 0;
                 } else if ($scope.exam.accuplacer_total > 42 & $scope.exam.accuplacer_total < 57) {
                     $scope.exam.accuplacer_level = 'Level 1 English';
@@ -142,7 +141,7 @@ angular.module('myApp.controllers', ['myApp.services', 'angularUtils.directives.
 
                 // Evaluate the score to what level they will be in
                 if ($scope.exam.writing_sample_score == 0) {
-                    $scope.exam.writing_sample_level = 'GED';
+                    $scope.exam.writing_sample_level = 'Cannot Be Placed';
                 } else if ($scope.exam.writing_sample_score == 1) {
                     $scope.exam.writing_sample_level = 'Level 1 English (ENG 66/68)';
                 } else if ($scope.exam.writing_sample_score == 2) {
@@ -150,7 +149,7 @@ angular.module('myApp.controllers', ['myApp.services', 'angularUtils.directives.
                 } else if ($scope.exam.writing_sample_score == 3) {
                     $scope.exam.writing_sample_level = 'Level 3 English (ENG 96/98)';
                 } else {
-                    $scope.exam.writing_sample_level = ('Credit (ENG 101/105');
+                    $scope.exam.writing_sample_level = ('Credit (ENG 101/105)');
                 }
 
 
@@ -187,7 +186,7 @@ angular.module('myApp.controllers', ['myApp.services', 'angularUtils.directives.
                 // Evaluate the final score to what level they will be in
                 if (finalPlacementScore == 0) {
                     $scope.exam.faculty_score = null;
-                    $scope.exam.final_placement_level = 'GED';
+                    $scope.exam.final_placement_level = 'Cannot Be Placed';
                 } else if (finalPlacementScore == 1) {
                     $scope.exam.faculty_score = null;
                     $scope.exam.final_placement_level = 'Level 1 English (ENG 66/68)';
@@ -221,7 +220,7 @@ angular.module('myApp.controllers', ['myApp.services', 'angularUtils.directives.
                 $scope.exam.faculty_score = parseInt($scope.facRadioChoice);
 
                 if ($scope.exam.faculty_score == 0) {
-                    $scope.exam.final_placement_level = 'GED';
+                    $scope.exam.final_placement_level = 'Cannot Be Placed';
                 } else if ($scope.exam.faculty_score == 1) {
                     $scope.exam.final_placement_level = 'Level 1 English (ENG 66/68)';
                 } else if ($scope.exam.faculty_score == 2) {
@@ -247,5 +246,34 @@ angular.module('myApp.controllers', ['myApp.services', 'angularUtils.directives.
 
 
     }])
+
+    //=============EXAM REPORTING=================
+
+    .controller('reportCtrl', ['$scope', 'Reports', '$log', '$filter', function ($scope, Reports, $log, $filter) {
+        $scope.testDateInput = '';
+
+        $scope.reportPlacement = ''
+
+        Date.prototype.yyyyMMdd = function () {
+            var yyyy = this.getFullYear().toString();
+            var MM = (this.getMonth()+1).toString(); // getMonth() is zero-based
+            var dd = this.getDate().toString();
+            return yyyy + (MM[1]?MM:"0"+MM[0]) + (dd[1]?dd:"0"+dd[0]); // padding
+        };
+
+
+        // SUBMIT DATE TO DB AND BRING BACK MATCHING EXAMS
+        $scope.submit = function() {
+            var td = $scope.testDateInput.yyyyMMdd();
+
+            Reports.query({ 'testDate': td },function(exams) {
+                $scope.reports = exams;
+
+            });
+        };
+
+
+    }])
+
 
 

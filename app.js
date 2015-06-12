@@ -21,6 +21,7 @@ var express = require('express'),
   routes = require('./routes'),
   exams = require('./routes/exams'),
   uploads = require('./routes/uploads'),
+  reports = require('./routes/reports'),
 
   http = require('http'),
   path = require('path'),
@@ -102,10 +103,12 @@ app.get('/', routes.index);
 app.get('/partials/:name', isLoggedIn, routes.partials);
 app.get('/partials/Exam/:name', isLoggedIn, routes.examPartials);
 app.get('/partials/Upload/:name', isLoggedIn, routes.uploadPartials);
+app.get('/partials/Report/:name', isLoggedIn, routes.reportPartials);
 
 // JSON API
 app.use('/api/exams', exams);
 app.use('/api/upload', uploads);
+app.use('/api/report', reports);
 //app.use('/ideaReport', ideaReport);
 
 // redirect all others to the index (HTML5 history)
@@ -115,6 +118,7 @@ app.get('*', routes.index);
 function isLoggedIn(req,res,next) {
     if(req.isAuthenticated())
         return next();
+    req.session.returnTo = req.path;
     res.redirect('/login');
 };
 

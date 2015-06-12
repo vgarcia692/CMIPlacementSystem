@@ -12,7 +12,7 @@ module.exports = function(app, passport) {
 
     app.post('/login', passport.authenticate('local-login', {
         // TODO Change all view2/view3..etc to their respective name without making it the same as API routes
-        successRedirect : '/view2',
+        successRedirect : 'back',
         failureRedirect : '/login',
         failureFlash : true
     }));

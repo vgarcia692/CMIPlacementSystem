@@ -27,6 +27,10 @@ angular.module('myApp', [
         when('/view3', {
           templateUrl: 'partials/Upload/index'
         }).
+        when('/view4', {
+          templateUrl: 'partials/Report/index',
+          controller: 'reportCtrl'
+        }).
         otherwise({
           redirectTo: '/view1'
         });
