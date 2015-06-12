@@ -3,7 +3,7 @@ var Sequelize = require('sequelize');
 module.exports = function(sequelize) {
   var Exam = sequelize.define("Exam", {
       date_created: { type: Sequelize.STRING, defaultValue: Sequelize.NOW },
-      test_date: Sequelize.DATE,
+      test_date: Sequelize.DATEONLY,
       l_name: Sequelize.STRING,
       m_initial: Sequelize.STRING,
       f_name: Sequelize.STRING,

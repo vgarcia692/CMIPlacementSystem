@@ -1,0 +1,46 @@
+<div>
+    <h1>Report By Essay Dates</h1>
+    <form class="form-inline hidden-print">
+        <div class="form-group">
+            <input type="date" class="form-control" id="examDate" ng-model="testDateInput"/>
+        </div>
+
+        <div class="form-group">
+            <button class="form-control btn btn-primary" ng-click="submit()">Submit</button>
+        </div>
+    </form>
+    <div>
+        <a href="javascript:window.print()" class="btn primary large hidden-print">Print Report</a>
+    </div>
+    <br>
+    <div>
+        <p>Total: {{reports.length}}</p>
+        <table class="table">
+            <thead>
+            <th>Essay #</th>
+            <th>Exam Date</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Placement</th>
+            <th>High School</th>
+            </thead>
+            <tbody ng-repeat="report in reports | orderBy:'hs'">
+            <tr>
+                <td>{{report.essay_num}}</td>
+                <td>{{report.test_date | date : 'shortDate' }}</td>
+                <td>{{report.f_name}}</td>
+                <td>{{report.l_name}}</td>
+                <td>
+                    <span ng-if="report.final_placement_level === 'Credit (ENG 101/105)'">Credit</span>
+                    <span ng-if="report.final_placement_level === 'Level 3 English (ENG 96/98)'">Level 3 English</span>
+                    <span ng-if="report.final_placement_level === 'Level 2 English (ENG 86/88)'">Level 2 English</span>
+                    <span ng-if="report.final_placement_level === 'Level 1 English (ENG 66/68)'">Level 1 English</span>
+                    <span ng-if="report.final_placement_level === 'Cannot Be Placed'">Cannot Be Placed</span>
+                </td>
+                <td>{{report.hs}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

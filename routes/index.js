@@ -36,3 +36,8 @@ exports.uploadPartials = function (req, res) {
     res.render('partials/Upload/' + name);
 };
 
+exports.reportPartials = function (req, res) {
+    var name = req.params.name;
+    res.render('partials/Report/' + name);
+}
+
