@@ -98,7 +98,7 @@ require('./routes/passport')(app, passport); // load our routes and pass in our 
 
 
 // serve index and view partials
-app.get('/', isLoggedIn,  routes.index);
+app.get('/', routes.index);
 app.get('/partials/:name', isLoggedIn, routes.partials);
 app.get('/partials/Exam/:name', isLoggedIn, routes.examPartials);
 app.get('/partials/Upload/:name', isLoggedIn, routes.uploadPartials);
