@@ -2,7 +2,7 @@
 
     <h2><span class="label label-default">{{ exams.length }} Total Exams</span></h2><br>
     <label for="search">Search: </label> <input id="search" placeholder="Filter Exams" ng-model="q">
-    <label for="search">Essay Number Search: </label> <input id="search" placeholder="Filter Essay Numbers" ng-model="exam.essay_num">
+    <label for="search">Essay Number Search: </label> <input type="number" id="search" placeholder="Filter Essay Numbers" ng-model="exam.essay_num">
     <br>
     <div class="panel">
     <table class="table table-hover">
@@ -15,7 +15,7 @@
             <th>High School</th>
         </thead>
         <tbody>
-        <tr dir-paginate="exam in exams | filter:q | filter:exam:strict=true | itemsPerPage: pageSize" current-page="currentPage">
+        <tr dir-paginate="exam in exams | filter:q | filter:exam:true | itemsPerPage: pageSize" current-page="currentPage">
             <td>{{ exam.essay_num }}</td>
             <td>{{ exam.test_date | date }}</td>
             <td><a href="/view2/{{exam.id}}">{{ exam.l_name }} {{ exam.m_initial }}, {{ exam.f_name }}</a></td>

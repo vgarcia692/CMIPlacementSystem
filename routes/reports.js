@@ -17,6 +17,7 @@ router.get('/', function(req, res) {
         },
         attributes: attributes
         }).then(function(exams) {
+		console.log(exams);
             res.json(exams);
     })
 })
