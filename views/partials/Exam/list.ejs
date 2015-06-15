@@ -15,7 +15,7 @@
             <th>High School</th>
         </thead>
         <tbody>
-        <tr dir-paginate="exam in exams | filter:q | filter:exam | itemsPerPage: pageSize" current-page="currentPage">
+        <tr dir-paginate="exam in exams | filter:q | filter:exam:strict=true | itemsPerPage: pageSize" current-page="currentPage">
             <td>{{ exam.essay_num }}</td>
             <td>{{ exam.test_date | date }}</td>
             <td><a href="/view2/{{exam.id}}">{{ exam.l_name }} {{ exam.m_initial }}, {{ exam.f_name }}</a></td>
