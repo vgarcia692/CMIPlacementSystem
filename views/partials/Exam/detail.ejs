@@ -1,7 +1,7 @@
 <div class="hidden-print">
 
     <h1>{{ exam.l_name }} {{ exam.m_initial }}, {{ exam.f_name }}</h1>
-    <p>{{ exam.test_date | date}}</p>
+    Test Date: <input type="date" id="examDate" ng-model="exam.test_date"/> <button class="btn btn-primary" ng-click="submitTestDate()">Save</button>
     <h2><span class="label label-default">{{ exam.essay_num }}</span></h2>
     Essay Number: <input ng-if="!essayNumPresent" ng-model="exam.essay_num" type="number"> <button ng-if="!essayNumPresent" class="btn btn-primary" ng-click="submitEssayNum()">Save</button>
     <br>

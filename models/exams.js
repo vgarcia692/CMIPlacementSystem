@@ -205,7 +205,7 @@ module.exports = function(sequelize) {
       ea_total_score: Sequelize.INTEGER,
       a_grade: Sequelize.STRING,
       a_percent_score: Sequelize.INTEGER,
-      essay_num: Sequelize.STRING,
+      essay_num: Sequelize.INTEGER,
       accuplacer_total: Sequelize.INTEGER,
       accuplacer_score: Sequelize.INTEGER,
       accuplacer_level: Sequelize.STRING,

@@ -26,6 +26,7 @@ angular.module('myApp.controllers', ['myApp.services', 'angularUtils.directives.
 
     .controller('examDetailCtrl', ['$scope', '$routeParams', 'Exams', function ($scope, $routeParams, Exams) {
 
+
         $scope.wsScore = 0;
         $scope.wsRadioChoice = 0;
 
@@ -35,11 +36,35 @@ angular.module('myApp.controllers', ['myApp.services', 'angularUtils.directives.
 
         $scope.finalPlacementScore = 0;
 
+        Date.prototype.yyyyMMdd = function () {
+            var yyyy = this.getFullYear().toString();
+            var MM = (this.getMonth()+1).toString(); // getMonth() is zero-based
+            var dd = this.getDate().toString();
+            return yyyy + (MM[1]?MM:"0"+MM[0]) + (dd[1]?dd:"0"+dd[0]); // padding
+        };
 
 
+        // GET EXAM BY THE ID
         $scope.exam = Exams.get({ id: $routeParams.id }, function(examDB){
 
+
+            // Get test_date from resources and change into Date objectr
+            $scope.exam.test_date = new Date(examDB.test_date);
+
+            console.log($scope.exam.test_date);
+
+            $scope.submitTestDate = function() {
+                examDB.test_date = $scope.exam.test_date.yyyyMMdd();
+
+                examDB.$update();
+
+                console.log(examDB.test_date);
+            };
+
+
             $scope.savePersonalInfo = function() {
+                $scope.exam.dob = new DATE();
+                examDB.dob = $scope.exam.dob.yyyyMMdd();
                 examDB.$update();
                 alert('Personal Information Has Been Updated.');
             };
@@ -251,6 +276,7 @@ angular.module('myApp.controllers', ['myApp.services', 'angularUtils.directives.
 
     .controller('reportCtrl', ['$scope', 'Reports', '$log', '$filter', function ($scope, Reports, $log, $filter) {
         $scope.testDateInput = '';
+        $scope.testYearInput = '';
 
         $scope.reportPlacement = ''
 
@@ -263,10 +289,23 @@ angular.module('myApp.controllers', ['myApp.services', 'angularUtils.directives.
 
 
         // SUBMIT DATE TO DB AND BRING BACK MATCHING EXAMS
-        $scope.submit = function() {
+        $scope.submitTestDate = function() {
+            $scope.testYearInput = '';
+
             var td = $scope.testDateInput.yyyyMMdd();
 
             Reports.query({ 'testDate': td },function(exams) {
+                $scope.reports = exams;
+
+            });
+        };
+
+        $scope.submitTestYear = function() {
+            $scope.testDateInput = '';
+
+            var td = $scope.testYearInput;
+
+            Reports.query({ 'testYear': td },function(exams) {
                 $scope.reports = exams;
 
             });

@@ -1,20 +1,40 @@
 <div>
-    <h1>Report By Test Dates</h1>
-    <form class="form-inline hidden-print">
-        <div class="form-group">
-            <input type="date" class="form-control" id="examDate" ng-model="testDateInput"/>
-        </div>
+    <div class="hidden-print">
+        <h1>Report By Test Dates</h1>
 
-        <div class="form-group">
-            <button class="form-control btn btn-primary" ng-click="submit()">Submit</button>
+        <h3>Search by Test Date</h3>
+        <i>Does not include Exams with level "Cannot Be Placed"</i>
+        <form class="form-inline hidden-print" id="SearchDate">
+            <div class="form-group">
+                <input type="date" class="form-control" id="examDate" ng-model="testDateInput"/>
+            </div>
+
+            <div class="form-group">
+                <button class="form-control btn btn-primary" ng-click="submitTestDate()">Submit</button>
+            </div>
+        </form>
+        <hr>
+        <h3>Search by Test Date Year</h3>
+        <i>Includes Exams with level "Cannot Be Placed"</i>
+        <div class="row">
+            <form class="col-lg-4 form-inline hidden-print" id="SearchYear">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="examDateYear" ng-model="testYearInput" placeholder="Filter by High School"/>
+                </div>
+
+                <div class="form-group">
+                    <button class="form-control btn btn-primary" ng-click="submitTestYear()">Submit</button>
+                </div>
+            </form>
+                <i>If left blank will not show results.</i>
+            <input class="col-lg-2" type="text" ng-model="report.hs" placeholder="Filter High Schools"/>
         </div>
-    </form>
+    </div>
     <div>
         <a href="javascript:window.print()" class="btn primary large hidden-print">Print Report</a>
     </div>
     <br>
     <div>
-        <p>Total: {{reports.length}}</p>
         <table class="table">
             <thead>
             <th>Essay #</th>
@@ -24,7 +44,7 @@
             <th>Placement</th>
             <th>High School</th>
             </thead>
-            <tbody ng-repeat="report in reports | orderBy:'hs'">
+            <tbody ng-repeat="report in reports | orderBy:'hs' | filter:report:true ">
             <tr>
                 <td>{{report.essay_num}}</td>
                 <td>{{report.test_date | date : 'shortDate' }}</td>

@@ -5,7 +5,7 @@ var router = express.Router();
 var Exam = models.Exam;
 
 router.get('/', function(req, res) {
-    Exam.findAll({ attributes: ['id', 'essay_num', 'test_date', 'f_name', 'l_name', 'm_initial', 'final_placement_level', 'taken', 'taken_year', 'hs']}).then(function(exams) {
+    Exam.findAll({ attributes: ['id', 'essay_num', 'test_date', 'f_name', 'l_name', 'm_initial', 'final_placement_level', 'taken', 'taken_year', 'hs', 'math_level']}).then(function(exams) {
         res.json(exams);
     })
 })
@@ -37,7 +37,8 @@ router.put('/:id', function(req, res) {
             sis_full_name:          req.body.sis_full_name,
             sis_r_date_as_new:      req.body.sis_r_date_as_new,
             math_score:             req.body.math_score,
-            math_level:             req.body.math_level
+            math_level:             req.body.math_level,
+            test_date:              req.body.test_date
 
         },
         { where: {id: req.params.id}})
