@@ -100,7 +100,7 @@ angular.module('myApp.controllers', ['myApp.services', 'angularUtils.directives.
                 $scope.exam.math_level = 'Level 2';
 //                examDB.math_level = 'Level 2';
             } else if ($scope.exam.math_score < 47) {
-                $scope.exam.math_level = 'Level 4';
+                $scope.exam.math_level = 'Level 3';
 //                examDB.math_level = 'Level 1';
             } else {
                 $scope.exam.math_level = 'Credit';

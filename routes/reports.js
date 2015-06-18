@@ -7,12 +7,10 @@ var Exam = models.Exam;
 router.get('/', function(req, res) {
     var testDate = req.query.testDate;
     var testYear = req.query.testYear;
-    var attributes = ['essay_num', 'test_date', 'f_name', 'l_name', 'final_placement_level', 'hs'];
+    var attributes = ['essay_num', 'test_date', 'f_name', 'l_name', 'final_placement_level', 'hs', 'math_score',
+                        'math_level', 'ea_total_score', 'a_total_score'];
 
-//
-//    console.log(testDate);
-//    console.log(testYear);
-
+    // SEE WHICH FORM WAS USED..EITHER SEARCH BY DATE OR DATE YEAR
     if (!testDate && testYear != '') {
         Exam.findAll({
             where: {
@@ -35,7 +33,6 @@ router.get('/', function(req, res) {
             },
             attributes: attributes
         }).then(function(exams) {
-                console.log(exams);
                 res.json(exams);
         })
     }

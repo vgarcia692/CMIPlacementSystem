@@ -19,7 +19,7 @@
         <div class="row">
             <form class="col-lg-4 form-inline hidden-print" id="SearchYear">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="examDateYear" ng-model="testYearInput" placeholder="Filter by High School"/>
+                    <input type="text" class="form-control" id="examDateYear" ng-model="testYearInput" placeholder="Search by Year"/>
                 </div>
 
                 <div class="form-group">
@@ -51,11 +51,16 @@
                 <td>{{report.f_name}}</td>
                 <td>{{report.l_name}}</td>
                 <td>
-                    <span ng-if="report.final_placement_level === 'Credit (ENG 101/105)'">Credit</span>
-                    <span ng-if="report.final_placement_level === 'Level 3 English (ENG 96/98)'">Level 3 English</span>
-                    <span ng-if="report.final_placement_level === 'Level 2 English (ENG 86/88)'">Level 2 English</span>
-                    <span ng-if="report.final_placement_level === 'Level 1 English (ENG 66/68)'">Level 1 English</span>
-                    <span ng-if="report.final_placement_level === 'Cannot Be Placed'">Cannot Be Placed</span>
+                    <span ng-if="report.final_placement_level === 'Credit (ENG 101/105)'">English: Credit</span>
+                    <span ng-if="report.final_placement_level === 'Level 3 English (ENG 96/98)'">English: Level 3</span>
+                    <span ng-if="report.final_placement_level === 'Level 2 English (ENG 86/88)'">English: Level 2</span>
+                    <span ng-if="report.final_placement_level === 'Level 1 English (ENG 66/68)'">English: Level 1</span>
+                    <span ng-if="report.final_placement_level === 'Cannot Be Placed'">English: Cannot Be Placed</span>
+                    <br>
+                    <span ng-if="report.ea_total_score + report.a_total_score < 30">Math: Level 1</span>
+                    <span ng-if="((report.ea_total_score + report.a_total_score) < 38) && ((report.ea_total_score + report.a_total_score) > 29)">Math: Level 2</span>
+                    <span ng-if="((report.ea_total_score + report.a_total_score) < 47) && ((report.ea_total_score + report.a_total_score) > 37)">Math: Level 3</span>
+                    <span ng-if="report.ea_total_score + report.a_total_score > 46">Math: Level 4</span>
                 </td>
                 <td>{{report.hs}}</td>
             </tr>
