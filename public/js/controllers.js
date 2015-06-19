@@ -40,29 +40,33 @@ angular.module('myApp.controllers', ['myApp.services', 'angularUtils.directives.
             var yyyy = this.getFullYear().toString();
             var MM = (this.getMonth()+1).toString(); // getMonth() is zero-based
             var dd = this.getDate().toString();
-            return yyyy + (MM[1]?MM:"0"+MM[0]) + (dd[1]?dd:"0"+dd[0]); // padding
+            return yyyy + "-" + (MM[1]?MM:"0"+MM[0]) + "-" + (dd[1]?dd:"0"+dd[0]); // padding
         };
 
 
         // GET EXAM BY THE ID
         $scope.exam = Exams.get({ id: $routeParams.id }, function(examDB){
 
+            // Get test_date from resources and change into Date object
+            $scope.exam.testDate = new Date(examDB.test_date);
 
-            // Get test_date from resources and change into Date objectr
-            $scope.exam.test_date = new Date(examDB.test_date);
-
-            console.log($scope.exam.test_date);
-
+            examDB.test_date = $scope.exam.testDate.yyyyMMdd();
             $scope.submitTestDate = function() {
-                examDB.test_date = $scope.exam.test_date.yyyyMMdd();
+                examDB.test_date = $scope.exam.testDate.yyyyMMdd();
 
                 examDB.$update();
 
-                console.log(examDB.test_date);
             };
 
 
             $scope.savePersonalInfo = function() {
+
+                // EXAM DATE UPDATE IF/IF NOT EMPTY FROM DATEPICKER
+                if ($scope.exam.testDate == null) {
+                    examDB.test_date = new Date(examDB.test_date).yyyyMMdd();
+                } else {
+                    examDB.test_date = $scope.exam.testDate.yyyyMMdd();
+                }
                 $scope.exam.dob = new DATE();
                 examDB.dob = $scope.exam.dob.yyyyMMdd();
                 examDB.$update();
@@ -159,6 +163,12 @@ angular.module('myApp.controllers', ['myApp.services', 'angularUtils.directives.
             // ====================================================
             // Event when user submits an Essay Score
             $scope.submitWsScore = function() {
+                // EXAM DATE UPDATE IF/IF NOT EMPTY FROM DATEPICKER
+                if ($scope.exam.testDate == null) {
+                    examDB.test_date = new Date(examDB.test_date).yyyyMMdd();
+                } else {
+                    examDB.test_date = $scope.exam.testDate.yyyyMMdd();
+                }
 
 
                 // Get the score from radio button choices
@@ -233,6 +243,7 @@ angular.module('myApp.controllers', ['myApp.services', 'angularUtils.directives.
                 examDB.writing_sample_level = $scope.exam.writing_sample_level;
                 examDB.final_placement_level = $scope.exam.final_placement_level;
                 examDB.faculty_score = $scope.exam.faculty_score;
+//                examDB.test_date = new Date($scope.exam.test_date).yyyyMMdd();
 
                 examDB.$update();
 
@@ -241,6 +252,13 @@ angular.module('myApp.controllers', ['myApp.services', 'angularUtils.directives.
             //===============================
             // Get the score/level from the faculty radio buttons
             $scope.submitFacScore = function() {
+
+                // EXAM DATE UPDATE IF/IF NOT EMPTY FROM DATEPICKER
+                if ($scope.exam.testDate == null) {
+                    examDB.test_date = new Date(examDB.test_date).yyyyMMdd();
+                } else {
+                    examDB.test_date = $scope.exam.testDate.yyyyMMdd();
+                }
 
                 $scope.exam.faculty_score = parseInt($scope.facRadioChoice);
 

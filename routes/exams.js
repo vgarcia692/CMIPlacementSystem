@@ -45,6 +45,7 @@ router.put('/:id', function(req, res) {
         .then(function() {
             Exam.find(req.params.id).then(function(exam) {
                 res.send(exam);
+                console.log(exam.test_date);
             });
         });
 });
