@@ -38,7 +38,12 @@ router.put('/:id', function(req, res) {
             sis_r_date_as_new:      req.body.sis_r_date_as_new,
             math_score:             req.body.math_score,
             math_level:             req.body.math_level,
-            test_date:              req.body.test_date
+            test_date:              req.body.test_date,
+            admission_isComplete:   req.body.admission_isComplete,
+            admission_isAccepted:   req.body.admission_isAccepted,
+            admission_isEnrolled:   req.body.admission_isEnrolled,
+            admission_Year:       req.body.admission_Year,
+            admission_Semester:   req.body.admission_Semester
 
         },
         { where: {id: req.params.id}})

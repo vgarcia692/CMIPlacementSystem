@@ -219,7 +219,12 @@ module.exports = function(sequelize) {
       exam_year: Sequelize.STRING,
       sis_stud_no: Sequelize.STRING,
       sis_full_name: Sequelize.STRING,
-      sis_r_date_as_new: Sequelize.DATE
+      sis_r_date_as_new: Sequelize.DATE,
+      admission_isComplete: Sequelize.BOOLEAN,
+      admission_isAccepted: Sequelize.BOOLEAN,
+      admission_isEnrolled: Sequelize.BOOLEAN,
+      admission_Year: Sequelize.STRING,
+      admission_Semester: Sequelize.STRING 
   }, {
     omitNull: true,
     timestamps: false,

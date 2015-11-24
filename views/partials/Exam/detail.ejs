@@ -88,17 +88,95 @@
                 </div>
                 <div class="panel-body">
                     <form>
-                        <strong>Social Security Number: </strong><input type="text" ng-model="exam.ssn" placeholder="{{exam.ssn}}"/><br>
-                        <strong>Date of Birth: </strong><input type="date" ng-model="exam.dob" /> {{exam.dob | date}}<br>
-                        <strong>High School: </strong><input type="text" ng-model="exam.hs" placeholder="{{exam.hs}}"/><br>
-                        <strong>Gender: </strong><input type="text" ng-model="exam.gender" placeholder="{{exam.gender}}"/><br>
-                        <strong>Has taken placement test before?: </strong><input type="checkbox" ng-model="exam.taken" checked="exam.taken"/><br>
-                        <strong>If taken before, when?: </strong><input type="text" ng-model="exam.taken_year" placeholder="{{ exam.taken_year }}"/><br>
-                        <strong>Exam Year: </strong><input type="text" ng-model="exam.exam_year" placeholder="{{exam_year}}"/><br>
-                        <strong>SIS Student No.: </strong><input type="text" ng-model="exam.sis_stud_no" placeholder="{{sis_stud_no}}"/><br>
-                        <strong>SIS Full Name: </strong><input type="text" ng-model="exam.sis_full_name" placeholder="{{sis_full_name}}"/><br>
-                        <strong>SIS Registration Date: </strong><input type="date" ng-model="exam.sis_r_date_as_new" /> {{exam.sis_r_date_as_new | date}}<br>
+                        <div class="form-group">
+                        <label>Social Security Number: </label>
+                        <input class="form-control" type="text" ng-model="exam.ssn" placeholder="{{exam.ssn}}"/>
+                        </div>
+                        <div class="form-group">
+                        <label>Date of Birth: </label>
+                        <input class="form-control" type="date" ng-model="exam.dob" /> 
+                        </div>
+                        <div class="form-group">
+                        <label>High School: </label>
+                        <input class="form-control" type="text" ng-model="exam.hs" placeholder="{{exam.hs}}"/>
+                        </div>
+                        <div class="form-group">
+                        <label>Gender: </label>
+                        <input class="form-control" type="text" ng-model="exam.gender" placeholder="{{exam.gender}}"/></div>
+                        <div class="form-group">
+                        <label>Has taken placement test before?: </label>
+                        <input class="form-control" type="checkbox" ng-model="exam.taken" checked="exam.taken"/>
+                        </div>
+                        <div class="form-group">
+                        <label>If taken before, when?: </label>
+                        <input class="form-group" type="text" ng-model="exam.taken_year" placeholder="{{ exam.taken_year }}"/>
+                        </div>
+                        <div class="form-group">
+                        <label>Exam Year: </label>
+                        <input class="form-control" type="text" ng-model="exam.exam_year" placeholder="{{exam_year}}"/>
+                        </div>
+                        <div class="form-group">
+                        <label>SIS Student No.: </label>
+                        <input class="form-control" type="text" ng-model="exam.sis_stud_no" placeholder="{{sis_stud_no}}"/>
+                        </div>
+                        <div class="form-group">
+                        <label>SIS Full Name: </label>
+                        <input class="form-control" type="text" ng-model="exam.sis_full_name" placeholder="{{sis_full_name}}"/>
+                        </div>
+                        <div class="form-group">
+                        <label>SIS Registration Date: </label>
+                        <input class="form-control" type="date" ng-model="exam.sis_r_date_as_new" />
+                        </div>
                         <button class="btn btn-primary" type="submit" ng-click="savePersonalInfo()">Save</button>
+                    </form>
+
+                </div>
+
+
+            </div>
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Admission Requirements</h3>
+                </div>
+                <div class="panel-body">
+                    <form>
+                        
+                        <div class="form-group">
+                        <label>Complete: </label>
+                        <input class="form-control" type="checkbox" ng-model="exam.admission_isComplete"  />
+                        </div>
+                        
+                        <div class="form-group" ng-show="exam.admission_isComplete" ng-hide="!exam.admission_isComplete">
+                        <label>Accepted: </label>
+                        <input class="form-control" type="checkbox" ng-model="exam.admission_isAccepted"/>
+                        </div>
+
+                        <div class="form-group" ng-show="exam.admission_isAccepted" ng-hide="!exam.admission_isAccepted">
+                        <label>Enrolled: </label>
+                        <input class="form-control" type="checkbox" ng-model="exam.admission_isEnrolled"/>
+                        </div>
+
+                        <div class="form-group" ng-show="exam.admission_isEnrolled" ng-hide="!exam.admission_isEnrolled">
+                        <label>Year/Semester: </label>
+                        <select class="from-control" ng-model="exam.admission_Year">
+                            <option></option>
+                            <option>2012</option>
+                            <option>2013</option>
+                            <option>2014</option>
+                            <option>2015</option>
+                            <option>2016</option>
+                            <option>2017</option>
+                        </select>
+                        <select class="from-control" ng-model="exam.admission_Semester" >
+                            <option></option>
+                            <option>Fall</option>
+                            <option>Spring</option>
+                            <option>Summer</option>
+                        </select>
+                        
+                        </div>
+                        <button class="btn btn-primary" type="submit" ng-click="saveAdmissionInfo()">Save</button>
                     </form>
 
                 </div>

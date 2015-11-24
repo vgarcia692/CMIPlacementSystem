@@ -47,10 +47,14 @@ angular.module('myApp.controllers', ['myApp.services', 'angularUtils.directives.
         // GET EXAM BY THE ID
         $scope.exam = Exams.get({ id: $routeParams.id }, function(examDB){
 
-            // Get test_date from resources and change into Date object
+            // Get dates from resources and change into Date object
             $scope.exam.testDate = new Date(examDB.test_date);
+            $scope.exam.dob = new Date(examDB.dob);
+            $scope.exam.sis_r_date_as_new = new Date(examDB.sis_r_date_as_new);
 
+            // Update the test date
             examDB.test_date = $scope.exam.testDate.yyyyMMdd();
+
             $scope.submitTestDate = function() {
                 examDB.test_date = $scope.exam.testDate.yyyyMMdd();
 
@@ -58,7 +62,7 @@ angular.module('myApp.controllers', ['myApp.services', 'angularUtils.directives.
 
             };
 
-
+            // Save personal info
             $scope.savePersonalInfo = function() {
 
                 // EXAM DATE UPDATE IF/IF NOT EMPTY FROM DATEPICKER
@@ -67,11 +71,32 @@ angular.module('myApp.controllers', ['myApp.services', 'angularUtils.directives.
                 } else {
                     examDB.test_date = $scope.exam.testDate.yyyyMMdd();
                 }
-                $scope.exam.dob = new DATE();
+                // $scope.exam.dob = new DATE();
                 examDB.dob = $scope.exam.dob.yyyyMMdd();
+                examDB.sis_r_date_as_new = $scope.exam.sis_r_date_as_new.yyyyMMdd();
+                console.log(examDB.sis_r_date_as_new + " " + examDB.dob);
                 examDB.$update();
                 alert('Personal Information Has Been Updated.');
             };
+
+            // Save Admission info
+            $scope.saveAdmissionInfo = function() {
+                // EXAM DATE UPDATE IF/IF NOT EMPTY FROM DATEPICKER
+                if ($scope.exam.testDate == null) {
+                    examDB.test_date = new Date(examDB.test_date).yyyyMMdd();
+                } else {
+                    examDB.test_date = $scope.exam.testDate.yyyyMMdd();
+                }
+                examDB.admission_isComplete = $scope.exam.admission_isComplete;
+                examDB.admission_isAccepted = $scope.exam.admission_isAccepted;
+                examDB.admission_isEnrolled = $scope.exam.admission_isEnrolled;
+                examDB.admission_Year = $scope.exam.admission_Year;
+                examDB.admission_Semester = $scope.exam.admission_Semester;
+                console.log(examDB.admission_isComplete + "/" + examDB.admission_isAccepted + "/" + examDB.admission_isEnrolled);
+                console.log(examDB.admission_Year + "/" + examDB.admission_Semester);
+                examDB.$update();
+                alert('Admission Information Has Been Updated.');
+            }
 
             if (examDB.essay_num == null) {
                 $scope.essayNumPresent = false;
