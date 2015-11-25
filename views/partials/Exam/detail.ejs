@@ -97,12 +97,24 @@
                         <input class="form-control" type="date" ng-model="exam.dob" /> 
                         </div>
                         <div class="form-group">
+                        <label>Gender: </label>
+                        <input class="form-control" type="text" ng-model="exam.gender" placeholder="{{exam.gender}}"/></div>
+                        <div class="form-group">
                         <label>High School: </label>
                         <input class="form-control" type="text" ng-model="exam.hs" placeholder="{{exam.hs}}"/>
                         </div>
-                        <div class="form-group">
-                        <label>Gender: </label>
-                        <input class="form-control" type="text" ng-model="exam.gender" placeholder="{{exam.gender}}"/></div>
+                    </form>
+                </div>
+            </div>
+
+            
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Placement Test Information</h3>
+                </div>
+                <div class="panel-body">
+                    <form>
                         <div class="form-group">
                         <label>Has taken placement test before?: </label>
                         <input class="form-control" type="checkbox" ng-model="exam.taken" checked="exam.taken"/>
@@ -115,25 +127,10 @@
                         <label>Exam Year: </label>
                         <input class="form-control" type="text" ng-model="exam.exam_year" placeholder="{{exam_year}}"/>
                         </div>
-                        <div class="form-group">
-                        <label>SIS Student No.: </label>
-                        <input class="form-control" type="text" ng-model="exam.sis_stud_no" placeholder="{{sis_stud_no}}"/>
-                        </div>
-                        <div class="form-group">
-                        <label>SIS Full Name: </label>
-                        <input class="form-control" type="text" ng-model="exam.sis_full_name" placeholder="{{sis_full_name}}"/>
-                        </div>
-                        <div class="form-group">
-                        <label>SIS Registration Date: </label>
-                        <input class="form-control" type="date" ng-model="exam.sis_r_date_as_new" />
-                        </div>
-                        <button class="btn btn-primary" type="submit" ng-click="savePersonalInfo()">Save</button>
                     </form>
-
                 </div>
-
-
             </div>
+
 
             <div class="panel panel-info">
                 <div class="panel-heading">
@@ -152,6 +149,34 @@
                         <input class="form-control" type="checkbox" ng-model="exam.admission_isAccepted"/>
                         </div>
 
+                        
+                        <button class="btn btn-primary" type="submit" ng-click="saveAdmissionInfo()">Save</button>
+                    </form>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Registration Information</h3>
+                </div>
+                <div class="panel-body">
+                    <form>
+                        <div class="form-group">
+                        <label>SIS Student No.: </label>
+                        <input class="form-control" type="text" ng-model="exam.sis_stud_no" placeholder="{{sis_stud_no}}"/>
+                        </div>
+                        <div class="form-group">
+                        <label>SIS Full Name: </label>
+                        <input class="form-control" type="text" ng-model="exam.sis_full_name" placeholder="{{sis_full_name}}"/>
+                        </div>
+                        <div class="form-group">
+                        <label>SIS Registration Date: </label>
+                        <input class="form-control" type="date" ng-model="exam.sis_r_date_as_new" />
+                        </div>
                         <div class="form-group" ng-show="exam.admission_isAccepted" ng-hide="!exam.admission_isAccepted">
                         <label>Enrolled: </label>
                         <input class="form-control" type="checkbox" ng-model="exam.admission_isEnrolled"/>
@@ -174,15 +199,13 @@
                             <option>Spring</option>
                             <option>Summer</option>
                         </select>
-                        
                         </div>
-                        <button class="btn btn-primary" type="submit" ng-click="saveAdmissionInfo()">Save</button>
+                        <button class="btn btn-primary" type="submit" ng-click="savePersonalInfo()">Save</button>
                     </form>
-
                 </div>
-
-
             </div>
+
+            
 
         </div>
 
