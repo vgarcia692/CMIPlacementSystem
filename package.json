@@ -24,7 +24,7 @@
     "passport": "^0.2.1",
     "passport-local": "^1.0.0",
     "phantom": "^0.7.2",
-    "sequelize": "^2.0.5",
+    "sequelize": "^6.3.5",
     "sequelize-cli": "^1.6.0"
   }
 }
